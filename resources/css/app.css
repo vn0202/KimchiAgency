@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+
+    html {
+        font-family: 'Montserrat', Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+    }
+
+    body {
+        font-family: 'Montserrat', Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+        color:var(--color-text-normal);
+    }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .active-v2{
+        color: var(--color-primary)
+    }
+}
