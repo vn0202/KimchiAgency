@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PostResource\Pages;
-use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
@@ -13,8 +12,8 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\FileUpload;
+use Illuminate\Support\Str;
 
 class PostResource extends Resource
 {
@@ -22,18 +21,17 @@ class PostResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-
-
-
     public static function form(Form $form): Form
     {
 
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title'),
+                Forms\Components\TextInput::make('title')
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(fn (Forms\Set $set, ?string $state) => $set('slug', Str::slug($state))),
                 Forms\Components\TextInput::make('slug'),
                 Forms\Components\TextInput::make('description'),
-                TinyMce::make('content')->columnSpanFull(),
+                Forms\Components\RichEditor::make('content')->columnSpanFull(),
                 Forms\Components\Select::make('category_id')
                 ->options(Category::pluck('name', 'id')),
                Forms\Components\SpatieTagsInput::make('tags')
@@ -41,6 +39,10 @@ class PostResource extends Resource
                     $item = json_decode($item,true);
                     return $item['en'];
                 }, $state) ),
+                FileUpload::make('featured_media_id')
+                ->disk('public')
+                ->storeFiles(false)
+
             ]);
     }
 
