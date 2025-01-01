@@ -1,7 +1,7 @@
 <header   @click.outside="dropdown=false" id="header" x-data="{dropdown:false}" class=" relative lg:hidden flex justify-between items-center bg-white p-4">
-    <div>
+    <a class="block" href="{{route("home")}}">
         <img class="w-[105px]" src="{{asset("images/kimchi.svg")}}" alt="">
-    </div>
+    </a>
     <div  @click="dropdown = !dropdown"s class="bg-black w-10 h-10 rounded-full flex items-center justify-center">
         <i class="fa-solid fa-bars text-white"></i>
     </div>

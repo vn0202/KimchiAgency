@@ -8,9 +8,9 @@
        </div>
       </div>
     <div class="hidden lg:flex flex-col justify-between h-full items-center">
-        <div>
+        <a class="block" href="{{route('home')}}">
             <img class="w-[105px]" src="{{asset("images/kimchi.svg")}}" alt="">
-        </div>
+        </a>
         <div>
             <div class="-rotate-90 -translate-y-10 text-xs font-thin">
                 <p>2nd floor, The Terra 83 Hao Nam,</p>
