@@ -10,29 +10,24 @@ return new class extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('normalized')->index();
-            $table->string('slug')->index();
-            $table->text('description')->nullable();
-            $table->unsignedBigInteger('user_id')->default(0);
-            $table->json('properties')->nullable();
+
+            $table->json('name');
+            $table->json('slug');
+            $table->string('type')->nullable();
+            $table->integer('order_column')->nullable();
+
             $table->timestamps();
         });
 
         Schema::create('taggables', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('tag_id')->constrained()->cascadeOnDelete();
+
             $table->morphs('taggable');
-            $table->string('type')->index()->default('tag');
-            $table->integer('order')->default(0)->index();
 
             $table->unique(['tag_id', 'taggable_id', 'taggable_type']);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('taggables');
