@@ -353,7 +353,7 @@
         <footer class="lg:h-full overflow-hidden">
 
             <div
-                class=" flex lg:hidden justify-between items-center border-t py-10 bg-black mt-4 text-[#808080] text-lg ">
+                class=" flex lg:hidden justify-between items-center border-t py-10 bg-black text-[#808080] text-lg ">
                 <div class="mx-auto">
                     <p>Copyright © 2020 T&amp;N.</p>
 
@@ -407,7 +407,7 @@
         direction: 'horizontal',
         loop: true,
             autoplay: {
-                delay: 5000,
+                delay: 2000,
             },
 
         // If we need pagination

@@ -25,19 +25,19 @@
                     left: 0;
                 }
             </style>
-            <a href="#" class="active block">home-</a>
+            <a href="{{route("home")}}" class="{{\Illuminate\Support\Str::contains(Route::currentRouteName(), "works") ? 'active' :''}} block">home-</a>
         </div>
         <div>
-            <a href="#" class="block pt-4">works-</a>
+            <a href="{{route("works")}}" class="block pt-4 {{\Illuminate\Support\Str::contains(Route::currentRouteName(), "works") ? 'active' :''}}">works-</a>
         </div>
         <div>
-            <a href="#" class="block pt-4">about-</a>
+            <a href="{{route('about')}}" class="block pt-4 {{\Illuminate\Support\Str::contains(Route::currentRouteName(), "about") ? 'active' :''}}">about-</a>
         </div>
         <div>
-            <a href="#" class="block pt-4">careers-</a>
+            <a href="{{route("careers.page")}}" class="block pt-4 {{\Illuminate\Support\Str::contains(Route::currentRouteName(), "careers") ? 'active' :''}}">careers-</a>
         </div>
         <div>
-            <a href="#" class="block pt-4">contact --</a>
+            <a href="{{route("contact")}}" class="block pt-4 {{\Illuminate\Support\Str::contains(Route::currentRouteName(), "contact") ? 'active' :''}}">contact --</a>
         </div>
     </nav>
 
