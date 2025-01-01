@@ -62,5 +62,10 @@ class Post extends Model
             ->orderBy('sort');
     }
 
+    public function getUrlAttribute(): string
+    {
+        return route("blog.detail", ['slug' => $this->slug, 'cat' => $this->category->slug]);
+    }
+
 
 }

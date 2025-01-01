@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -25,7 +27,13 @@ class PageController extends Controller
     public function worksPage(Request $request, string $cat = 'strategic-planning' )
     {
 
-        return view("pages.works", ["cat" => $cat]);
+         $cat = Category::where("slug", $cat)->firstOrFail();
+
+         $cats = Category::has("posts")->get();
+
+         $posts = Post::where("category_id", $cat->id)->orderBy("created_at", "desc")->get();
+
+        return view("pages.works", ["cat" => $cat, 'cats' => $cats, 'posts' => $posts]);
     }
     public function detail(Request $request)
     {
@@ -33,9 +41,19 @@ class PageController extends Controller
         return view("pages.blogs.detail");
     }
 
+    public function about()
+    {
+        $cats = Category::has("posts")->get();
+
+        return view ("pages.about", ['cats' => $cats]);
+    }
+
     public function careerPages(Request $request, string $page = '' )
     {
 
-        return view("pages.careers.$page", );
+        if(!$page){
+            return view("pages.careers");
+        }
+        return view("pages.careers.$page");
     }
 }

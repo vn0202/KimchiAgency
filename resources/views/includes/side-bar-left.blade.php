@@ -24,7 +24,7 @@
             <a href="{{route('about')}}" class=" block {{\Illuminate\Support\Str::contains(Route::currentRouteName(), "about") ? 'active' :''}}" @mousemove.self="handleUI('about',$el)" @mouseleave="handleUI('about',$el,true)">about-</a>
         </div>
         <div class="-rotate-90">
-            <a href="{{route("careers")}}" class=" block {{\Illuminate\Support\Str::contains(Route::currentRouteName(), "careers") ? 'active' :''}}" @mousemove.self="handleUI('careers', $el)" @mouseleave="handleUI('careers',$el,true)">careers-</a>
+            <a href="{{route("careers.page")}}" class=" block {{\Illuminate\Support\Str::contains(Route::currentRouteName(), "careers") ? 'active' :''}}" @mousemove.self="handleUI('careers', $el)" @mouseleave="handleUI('careers',$el,true)">careers-</a>
         </div>
         <div class="-rotate-90">
             <a href="{{route('contact')}}" class=" block {{\Illuminate\Support\Str::contains(Route::currentRouteName(), "contact") ? 'active' :''}}" @mousemove.self="handleUI('contact',$el)" @mouseleave="handleUI('contact',$el,true)">contact-</a>

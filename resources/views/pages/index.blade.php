@@ -330,19 +330,19 @@
                    @mousemove.self="handleUI('home')" @mouseleave="handleUI('home',true)">home-</a>
             </div>
             <div class="-rotate-90">
-                <a href="{{route('works')}}" class=" block {{Route::currentRouteName()== 'works' ? 'active' :''}}"
+                <a href="{{route('works')}}" class=" block {{\Illuminate\Support\Str::contains(Route::currentRouteName(),'works') ? 'active' :''}}"
                    @mouseover.self="handleUI('works',$el)" @mouseleave="handleUI('works',$el,true)">works-</a>
             </div>
             <div class="-rotate-90">
-                <a href="{{route('about')}}" class=" block {{Route::currentRouteName()== 'about' ? 'active' :''}}"
+                <a href="{{route('about')}}" class=" block {{\Illuminate\Support\Str::contains(Route::currentRouteName(),'about') ? 'active' :''}}"
                    @mousemove.self="handleUI('about',$el)" @mouseleave="handleUI('about',$el,true)">about-</a>
             </div>
             <div class="-rotate-90">
-                <a href="{{route("careers")}}" class=" block {{Route::currentRouteName()== 'careers' ? 'active' :''}}"
+                <a href="{{route("careers.page")}}" class=" block {{\Illuminate\Support\Str::contains(Route::currentRouteName(),'careers') ? 'active' :''}}"
                    @mousemove.self="handleUI('careers', $el)" @mouseleave="handleUI('careers',$el,true)">careers-</a>
             </div>
             <div class="-rotate-90">
-                <a href="{{route('contact')}}" class=" block {{Route::currentRouteName()== 'contact' ? 'active' :''}}"
+                <a href="{{route('contact')}}" class=" block {{\Illuminate\Support\Str::contains(Route::currentRouteName(),'contact') ? 'active' :''}}"
                    @mousemove.self="handleUI('contact',$el)" @mouseleave="handleUI('contact',$el,true)">contact-</a>
             </div>
         </nav>

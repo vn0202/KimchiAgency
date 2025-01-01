@@ -17,31 +17,13 @@
                     At Thread & Needle, we develop made-to-order Marketing and Communications Campaigns that deliver relevant, bottom-line results to our clients. We are inspired by Tailors – professionals that neatly combined an understanding of the customer’s needs with creativity, precision, and diligence to create products able to elevate status and exert attraction. A good tailor understands that form and function must always go hand-in-hand, and so do we, in our work.
                 </div>
                 <div class="flex flex-wrap flex-col lg:flex-row">
-                    <div class=" w-max lg:w-1/3 p-2 lg:py-6 relative mx-auto lg:mx-0  ">
-                        <a href="#" class="hover:text-primary  transition-all  duration-[500] ">Strategic Planning ></a>
-                        <div class="h-0.5 w-10 bg-primary absolute bottom-0 lg:left-0 lg:translate-x-0 left-1/2 -translate-x-1/2"></div>
+                    @foreach( $cats as $cat)
+                        <div class=" w-max lg:w-1/3 p-2 lg:py-6 relative mx-auto lg:mx-0  ">
+                            <a href="{{$cat->url()}}" class="hover:text-primary  transition-all  duration-[500] ">{{$cat->name}} ></a>
+                            <div class="h-0.5 w-10 bg-primary absolute bottom-0 lg:left-0 lg:translate-x-0 left-1/2 -translate-x-1/2"></div>
+                        </div>
+                    @endforeach
 
-                    </div>
-                    <div class=" w-max lg:w-1/3 p-2 lg:py-6 relative mx-auto lg:mx-0 ">
-                        <a href="#" class="hover:text-primary  transition-all  duration-[500] ">Digital ></a>
-                        <div class="h-0.5 w-10 bg-primary absolute bottom-0 lg:left-0 lg:translate-x-0 left-1/2 -translate-x-1/2"></div>
-
-                    </div>
-                    <div class=" w-max lg:w-1/3 p-2 lg:py-6 relative mx-auto lg:mx-0" >
-                        <a href="#" class="hover:text-primary  transition-all  duration-[500]">Performance Ads ></a>
-                        <div class="h-0.5 w-10 bg-primary absolute bottom-0 lg:left-0 lg:translate-x-0 left-1/2 -translate-x-1/2"></div>
-
-                    </div>
-                    <div class=" w-max lg:w-1/3 p-2 lg:py-6 relative mx-auto lg:mx-0 ">
-                        <a href="#" class="hover:text-primary  transition-all  duration-[500]">Web Design ></a>
-                        <div class="h-0.5 w-10 bg-primary absolute bottom-0 lg:left-0 lg:translate-x-0 left-1/2 -translate-x-1/2"></div>
-
-                    </div>
-                    <div class="  w-max lg:w-1/3 p-2 lg:py-6 relative mx-auto lg:mx-0">
-                        <a href="#" class="hover:text-primary  transition-all  duration-[500]">Video Production ></a>
-                        <div class="h-0.5 w-10 bg-primary absolute bottom-0 lg:left-0 lg:translate-x-0 left-1/2 -translate-x-1/2"></div>
-
-                    </div>
                 </div>
 
                 <div class="w-3/4 h-10 bg-primary mt-10 hidden lg:block">

@@ -5,7 +5,7 @@
     <div  @click="dropdown = !dropdown"s class="bg-black w-10 h-10 rounded-full flex items-center justify-center">
         <i class="fa-solid fa-bars text-white"></i>
     </div>
-    <nav  :class="dropdown ? 'h-max' : 'h-0'"
+    <nav  :class="dropdown ? 'h-[300px] ' : 'h-0'"
           x-init="$el.style.top = document.getElementById('header').offsetHeight + 'px';"
           class="absolute transition-all z-[50]  duration-300  bg-[#f7f7f7] left-0 w-full px-4 overflow-hidden">
         <div>
