@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use AmidEsfahani\FilamentTinyEditor\TinyEditor;
 use App\Filament\Resources\PostResource\Pages;
 use App\Models\Category;
 use App\Models\Post;
@@ -31,7 +32,13 @@ class PostResource extends Resource
                     ->afterStateUpdated(fn (Forms\Set $set, ?string $state) => $set('slug', Str::slug($state))),
                 Forms\Components\TextInput::make('slug'),
                 Forms\Components\TextInput::make('description'),
-                Forms\Components\RichEditor::make('content')->columnSpanFull(),
+                TinyEditor::make('content')
+                    ->fileAttachmentsDisk('public')
+                    ->fileAttachmentsVisibility('public')
+                    ->fileAttachmentsDirectory('uploads')
+                    ->profile('default|simple|full|minimal|none|custom')
+                    ->columnSpan('full')
+                    ->required(),
                 Forms\Components\Select::make('category_id')
                 ->options(Category::pluck('name', 'id')),
                Forms\Components\SpatieTagsInput::make('tags')
