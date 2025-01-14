@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,8 @@ class PageController extends Controller
         ];
         $validated = $request->validate($rules);
 
+        Contact::create($validated);
+        return redirect()->back()->with('success', 'Your message has been sent');
     }
 
     public function index()
