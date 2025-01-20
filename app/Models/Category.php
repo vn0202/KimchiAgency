@@ -20,6 +20,10 @@ class Category extends Model
         return $this->hasMany(Post::class, 'category_id');
     }
 
+    public function thumbnail():belongsTo{
+        return $this->belongsTo(Attachment::class, 'thumbnail_id');
+    }
+
     public function url()
     {
         return route('works', ['cat' => $this->slug]);

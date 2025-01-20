@@ -5,7 +5,9 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
 use App\Models\Category;
+use App\Models\Post;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -30,6 +32,9 @@ class CategoryResource extends Resource
                 ->label("Parent Category")
                 ->options(Category::all()->pluck('name', 'id')),
                 Forms\Components\TextInput::make('description'),
+                FileUpload::make('thumbnail_id')
+                    ->disk('public')
+                    ->storeFiles(false)
             ]);
     }
 
@@ -39,6 +44,9 @@ class CategoryResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('slug'),
+                Tables\Columns\ImageColumn::make('thumbnail')
+                    ->url(fn(Category $record) =>$record->thumbnail->url(),true)
+                    ->height(100),
                 Tables\Columns\TextColumn::make('description'),
                 Tables\Columns\TextColumn::make('parent_id'),
             ])
