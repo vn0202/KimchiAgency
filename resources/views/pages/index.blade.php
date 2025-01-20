@@ -184,7 +184,7 @@
     </div>
 </div>
 
-<main class="text-normal  lg:flex  bg-[url('https://kimchiagency.com/images/config/slide1_1611044473.jpg.webp')]">
+<main class="text-normal  lg:flex " style="background: url({{ background() }})">
 <div class="lg:hidden">
     <div class="swiper h-full ">
         <div class="swiper-wrapper">
@@ -362,17 +362,13 @@
             </div>
             <div class="hidden lg:flex flex-col justify-between h-full items-center">
                 <a class="pt-6 block" href="{{route('home')}}">
-                    <img class="w-[140px]" src="{{asset("images/kimchi.svg")}}" alt="">
+                    <img class="w-[140px]" src="{{logo()}}" alt="">
                 </a>
                 <div>
                     <div class="-rotate-90 -translate-y-48 text-base font-thin">
-                        <p>2nd floor, The Terra 83 Hao Nam,</p>
+                      {!!  \App\Models\StaticInfo::first()->address  !!}
 
-                        <p>Dong Da District, Hanoi,</p>
-
-                        <p>Vietnam</p>
-
-                        <p><a href="tel:(84) 98 598 93 39" class="font-bold">(84) 98 598 93 39</a></p>
+                        <p><a href="tel:(84) 98 598 93 39" class="font-bold"> {{\App\Models\StaticInfo::first()->phone}}</a></p>
                     </div>
                 </div>
             </div>

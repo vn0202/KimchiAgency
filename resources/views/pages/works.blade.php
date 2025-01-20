@@ -4,13 +4,13 @@
     <div class="flex flex-col lg:flex-row lg:gap-16 lg:flex-1">
         <div class=" min-h-52 lg:h-[100vh] justify-center relative items-center  flex lg:flex-col lg:w-4/12 overflow-hidden">
             <div class="absolute -z-1 left-0 w-full lg:static lg:h-[50vh] ">
-                <img class="max-w-full w-full h-full object-fit" src="https://kimchiagency.com/images/products/cat/resized/image_1611103289.jpg.webp" alt="">
+                <img class="max-w-full w-full h-full object-fit" src="{{$cat->thumbnail->url()}}" alt="">
             </div>
             <div class="relative w-full lg:bg-black lg:pl-10 lg:pt-6 lg:flex-1 lg:h-[50vh]">
                 <h2 class="text-5xl font-medium lg:font-light text-white text-center lg:text-start mb-4">{{$cat->name}}</h2>
                 <div class=" flex  font-light bg-white lg:bg-transparent overflow-x-scroll lg:overflow-hidden rounded-full lg:rounded-none lg:flex-col lg:text-white">
                     @foreach($cats as $_cat)
-                        <div class="shrink-0 p-4 lg:p-1 {{$cat->slug == $_cat->slug ? 'bg-black text-white' : 'text-black'}} lg:bg-transparent rounded-full ">
+                        <div class="shrink-0 p-4 lg:p-1 {{$cat->slug == $_cat->slug ? 'bg-black text-primary' : 'text-white'}} lg:bg-transparent rounded-full ">
                             <a  href="{{$_cat->url()}}" class="hover:text-primary {{$cat->slug == $_cat->slug ? 'active-v2' : ''}}"> {{$_cat->name}} ></a>
                         </div>
                     @endforeach
@@ -19,6 +19,9 @@
         </div>
         <div  class="lg:w-7/12 px-4 mt-10 lg:mt-0 flex-1 lg:h-[100vh] overflow-y-auto no-scrollbar" >
 
+            @if(!$posts->count())
+                <p>There is no posts</p>
+            @else
             <div>
                 @foreach($posts->chunk(3) as $chunk_posts)
                 <div class="relative">
@@ -35,6 +38,7 @@
                 @endforeach
 
             </div>
+            @endif
 
         </div>
     </div>

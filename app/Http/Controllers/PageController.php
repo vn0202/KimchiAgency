@@ -27,13 +27,15 @@ class PageController extends Controller
         return view('pages.index');
     }
 
-    public function worksPage(Request $request, string $cat = 'strategic-planning' )
+    public function worksPage(Request $request, string $slug = '' )
     {
 
-         $cat = Category::where("slug", $cat)->firstOrFail();
+         if(!$slug){
+             $slug = Category::has('posts')->first()->slug;
+         }
+        $cat = Category::where("slug", $slug)->first();
 
-         $cats = Category::has("posts")->get();
-
+        $cats = Category::has("posts")->get();
          $posts = Post::where("category_id", $cat->id)->orderBy("created_at", "desc")->get();
 
         return view("pages.works", ["cat" => $cat, 'cats' => $cats, 'posts' => $posts]);

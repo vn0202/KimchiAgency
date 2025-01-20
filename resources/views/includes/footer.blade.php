@@ -9,17 +9,13 @@
       </div>
     <div class="hidden lg:flex flex-col justify-between h-full items-center">
         <a class="block" href="{{route('home')}}">
-            <img class="w-[105px]" src="{{asset("images/kimchi.svg")}}" alt="">
+            <img class="w-[105px]" src="{{\App\Models\StaticInfo::first()->logo->url()}}" alt="">
         </a>
         <div>
             <div class="-rotate-90 -translate-y-10 text-xs font-thin">
-                <p>2nd floor, The Terra 83 Hao Nam,</p>
+               {!! \App\Models\StaticInfo::first()->address !!}
 
-                <p>Dong Da District, Hanoi,</p>
-
-                <p>Vietnam</p>
-
-                <p><a href="tel:(84) 98 598 93 39" class="font-bold">(84) 98 598 93 39</a></p>
+                <p><a href="tel:(84) 98 598 93 39" class="font-bold">{{\App\Models\StaticInfo::first()->phone}}</a></p>
             </div>
         </div>
     </div>

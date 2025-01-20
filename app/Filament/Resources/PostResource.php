@@ -10,10 +10,13 @@ use App\Models\Tag;
 use App\View\Components\TinyMce;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Forms\Components\FileUpload;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 
 class PostResource extends Resource
@@ -59,14 +62,20 @@ class PostResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('slug'),
+                Tables\Columns\ImageColumn::make('featured_media_id')
+                ->url(fn(Post $record) =>$record->featureMedia->url(),true)
+                ->height(100),
                 Tables\Columns\TextColumn::make('description'),
-                Tables\Columns\TextColumn::make('content'),
+                Tables\Columns\TextColumn::make('content')
+                    ->limit(100)
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -89,5 +98,18 @@ class PostResource extends Resource
             'create' => Pages\CreatePost::route('/create'),
             'edit' => Pages\EditPost::route('/{record}/edit'),
         ];
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist->schema([
+            TextEntry::make('title')->columnSpanFull(),
+            TextEntry::make('slug')->columnSpanFull(),
+            TextEntry::make('description')->columnSpanFull(),
+            TextEntry::make('category.name'),
+            TextEntry::make('content')
+                ->formatStateUsing(fn ($state) => new HtmlString($state),)
+                ->columnSpanFull(),
+        ]);
     }
 }
