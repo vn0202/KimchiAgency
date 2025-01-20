@@ -52,7 +52,6 @@ class StaticInfoResource extends Resource
                 TextColumn::make('email'),
                 TextColumn::make('address'),
                 TextColumn::make('slogan'),
-                TextColumn::make('favicon'),
                 Tables\Columns\ImageColumn::make('background_id')
                     ->url(fn(StaticInfo $record) =>$record->background()->first()->url(),true)
                     ->height(100),
