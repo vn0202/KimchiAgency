@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
+    <title>{{nameSite()}}</title>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -349,7 +349,7 @@
     </div>
 
 
-    <div class="w-full lg:w-1/6 bg-white ml-auto relative z-100">
+    <div class="w-full lg:w-[160px] bg-white ml-auto relative z-100">
         <footer class="lg:h-full overflow-hidden">
 
             <div
@@ -360,17 +360,14 @@
                     <p>All Rights Reserved.</p>
                 </div>
             </div>
-            <div class="hidden lg:flex flex-col justify-between h-full items-center">
+            <div class="hidden  lg:flex flex-col justify-between h-full items-center relative">
                 <a class="pt-6 block" href="{{route('home')}}">
-                    <img class="w-[140px]" src="{{logo()}}" alt="">
+                    <img class="w-[105px] h-[80px] object-fit" src="{{logo()}}" alt="">
                 </a>
-                <div>
-                    <div class="-rotate-90 -translate-y-48 text-base font-thin">
+                    <div class="absolute bottom-24 -rotate-90 text-xs font-thin">
                       {!!  \App\Models\StaticInfo::first()->address  !!}
-
                         <p><a href="tel:(84) 98 598 93 39" class="font-bold"> {{\App\Models\StaticInfo::first()->phone}}</a></p>
                     </div>
-                </div>
             </div>
         </footer>
     </div>

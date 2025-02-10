@@ -41,7 +41,7 @@
 
      @yield("content")
 
-     <div class="lg:w-1/12">
+     <div class="lg:w-[180px]">
          @include("includes.footer")
 
      </div>
