@@ -31,3 +31,17 @@ function logo()
     }
     return '';
 }
+
+function nameSite()
+{
+    $key = 'page_name_site';
+    $name = \Illuminate\Support\Facades\Cache::get($key);
+    if($name){
+        return $name;
+    }
+    $static_info = \App\Models\StaticInfo::first();
+    if($static_info){
+        $name = $static_info->name;
+        \Illuminate\Support\Facades\Cache::put($key, $name, 60);
+        return $name;
+    }}
