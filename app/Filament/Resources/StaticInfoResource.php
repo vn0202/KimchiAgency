@@ -14,6 +14,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\HtmlString;
 
 class StaticInfoResource extends Resource
 {
@@ -34,12 +35,34 @@ class StaticInfoResource extends Resource
                     ->disk('public')
                     ->previewable(true)
                     ->storeFiles(false),
+                Forms\Components\Placeholder::make('background')
+                    ->key('background')
+                    ->hidden(fn($record) => !$record)
+                    ->content(function ($record): HtmlString {
+                        return new HtmlString("<img src= '" . $record->background->url() . "'>");
+                    })
+                    ->hidden(fn($record) => !$record),
+
                 FileUpload::make('logo_id')
                     ->disk('public')
                     ->storeFiles(false),
+                Forms\Components\Placeholder::make('logo')
+                    ->key('logo')
+                    ->hidden(fn($record) => !$record)
+                    ->content(function ($record): HtmlString {
+                        return new HtmlString("<img src= '" . $record->logo->url() . "'>");
+                    })
+                    ->hidden(fn($record) => !$record),
                 FileUpload::make('favicon_id')
                     ->disk('public')
-                    ->storeFiles(false)
+                    ->storeFiles(false),
+                Forms\Components\Placeholder::make('favicon')
+                    ->key('favicon')
+                    ->hidden(fn($record) => !$record)
+                    ->content(function ($record): HtmlString {
+                        return new HtmlString("<img src= '" . $record->favicon->url() . "'>");
+                    })
+                    ->hidden(fn($record) => !$record),
             ]);
     }
 
