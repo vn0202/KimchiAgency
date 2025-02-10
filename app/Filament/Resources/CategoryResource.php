@@ -14,6 +14,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\HtmlString;
+use function Termwind\parse;
 
 class CategoryResource extends Resource
 {
@@ -32,9 +34,21 @@ class CategoryResource extends Resource
                 ->label("Parent Category")
                 ->options(Category::all()->pluck('name', 'id')),
                 Forms\Components\TextInput::make('description'),
+
+
                 FileUpload::make('thumbnail_id')
                     ->disk('public')
-                    ->storeFiles(false)
+                    ->storeFiles(false),
+                Forms\Components\Placeholder::make('thumbnail')
+                    ->key('thumbnail')
+                    ->hidden(fn($record) => !$record)
+                    ->content(function ($record): HtmlString {
+                        return new HtmlString("<img src= '" . $record->thumbnail->url() . "'>");
+                    })
+                    ->hidden(fn($record) => !$record)
+
+
+
             ]);
     }
 
@@ -44,8 +58,7 @@ class CategoryResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('slug'),
-                Tables\Columns\ImageColumn::make('thumbnail')
-                    ->url(fn(Category $record) =>$record->thumbnail->url(),true)
+                Tables\Columns\ImageColumn::make('thumbnail_url')
                     ->height(100),
                 Tables\Columns\TextColumn::make('description'),
                 Tables\Columns\TextColumn::make('parent_id'),

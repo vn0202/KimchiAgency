@@ -48,6 +48,10 @@ class Post extends Model
         return $this->belongsTo(\App\Models\Attachment::class, 'featured_media_id');
     }
 
+    public function getFeaturedImageUrlAttribute()
+    {
+        return $this->featureMedia->url();
+    }
 
     public function attachment(?string $group = null): MorphToMany
     {

@@ -24,6 +24,11 @@ class Category extends Model
         return $this->belongsTo(Attachment::class, 'thumbnail_id');
     }
 
+    public function getThumbnailUrlAttribute():string
+    {
+        return $this->thumbnail->url();
+    }
+
     public function url()
     {
         return route('works', ['cat' => $this->slug]);

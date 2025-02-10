@@ -54,13 +54,17 @@ class StaticInfoResource extends Resource
                 TextColumn::make('slogan'),
                 Tables\Columns\ImageColumn::make('background_id')
                     ->url(fn(StaticInfo $record) =>$record->background()->first()->url(),true)
-                    ->height(100),
+                    ->height(100)
+                ->hidden(fn($record) => !$record),
                 Tables\Columns\ImageColumn::make('logo_id')
                     ->url(fn(StaticInfo $record) =>$record->logo()->first()->url(),true)
-                    ->height(100),
+                    ->height(100)
+                    ->hidden(fn($record) => !$record),
+
                 Tables\Columns\ImageColumn::make('favicon_id')
                     ->url(fn(StaticInfo $record) =>$record->favicon()->first()->url(),true)
-                    ->height(100),
+                    ->height(100)
+                    ->hidden(fn($record) => !$record),
             ])
             ->filters([
                 //

@@ -51,7 +51,14 @@ class PostResource extends Resource
                 }, $state) ),
                 FileUpload::make('featured_media_id')
                 ->disk('public')
-                ->storeFiles(false)
+                ->storeFiles(false),
+                Forms\Components\Placeholder::make('featured_media')
+                    ->key('featured_media')
+                    ->hidden(fn($record) => !$record)
+                    ->content(function ($record): HtmlString {
+                        return new HtmlString("<img src= '" . $record->featureMedia->url() . "'>");
+                    })
+                    ->hidden(fn($record) => !$record)
 
             ]);
     }
@@ -62,8 +69,7 @@ class PostResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('slug'),
-                Tables\Columns\ImageColumn::make('featured_media_id')
-                ->url(fn(Post $record) =>$record->featureMedia->url(),true)
+                Tables\Columns\ImageColumn::make('featured_image_url')
                 ->height(100),
                 Tables\Columns\TextColumn::make('description'),
                 Tables\Columns\TextColumn::make('content')

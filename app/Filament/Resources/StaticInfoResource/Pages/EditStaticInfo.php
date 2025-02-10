@@ -13,12 +13,7 @@ class EditStaticInfo extends EditRecord
 {
     protected static string $resource = StaticInfoResource::class;
 
-    protected function mutateFormDataBeforeFill(array $data): array
-    {
 
-
-        return $data;
-    }
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
@@ -26,16 +21,22 @@ class EditStaticInfo extends EditRecord
             $file = new File($file);
             $media_id= $file->load();
             $data['background_id'] = $media_id->id;
+        }else{
+            unset($data['background_id']);
         }
         if($file = $data['favicon_id']){
             $file = new File($file);
             $media_id= $file->load();
             $data['favicon_id'] = $media_id->id;
+        }else{
+            unset($data['favicon_id']);
         }
         if($file = $data['logo_id']){
             $file = new File($file);
             $media_id= $file->load();
             $data['logo_id'] = $media_id->id;
+        }else{
+            unset($data['logo_id']);
         }
         return $data;
     }
